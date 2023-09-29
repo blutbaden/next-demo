@@ -1,27 +1,120 @@
+@import-normalize;
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+
+  .loader {
+    height: 5rem;
+    width: 5rem;
+    margin: auto;
+    animation: spin 2s infinite linear;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .sidebar-tooltip {
+    @apply absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md
+    text-white bg-gray-900
+    text-xs font-bold
+    transition-all duration-100 scale-0 origin-left;
+  }
+
+  .sidebar-hr {
+    @apply bg-gray-200 dark:bg-gray-800
+    border border-gray-200 dark:border-gray-800 rounded-full
+    mx-2;
+  }
+
+  .top-navigation {
+    @apply flex flex-row items-center justify-between bg-white dark:bg-slate-800
+    border-b-1 bg-opacity-90
+    w-full h-16
+    m-0
+    shadow-lg;
+  }
+
+  .top-navigation-icon {
+    @apply text-gray-500
+    mr-3 ml-4
+    transition duration-300 ease-in-out
+    hover:text-pink-400
+    cursor-pointer;
+  }
+
+  .top-navigation-icon:first {
+    @apply ml-auto mr-4;
+  }
+
+  .title-hashtag {
+    @apply text-lg tracking-wider font-semibold text-gray-500
+    ml-2 my-auto;
+  }
+
+  .title-text {
+    @apply text-lg text-gray-600 tracking-wider font-semibold text-opacity-80
+    mr-auto ml-2 my-auto
+    transition duration-300 ease-in-out;
+  }
+
+  .search {
+    @apply w-3/5 lg:w-2/5 flex items-center justify-start
+    bg-gray-100 dark:bg-gray-600
+    text-gray-500
+    px-2 h-9 mx-4
+    rounded-md
+    transition duration-300 ease-in-out;
+  }
+
+  .search-input {
+    @apply w-full font-sans
+    bg-transparent outline-none
+    text-gray-500  placeholder-gray-500
+    pl-1 rounded;
+  }
+
+  .content-container {
+    @apply flex flex-col
+    bg-gray-300 dark:bg-gray-700
+    m-0
+    h-full w-full
+    overflow-hidden;
+  }
+
+  .avatar {
+    @apply flex-none
+    w-12 h-full
+    rounded-full shadow-md
+    object-cover bg-gray-100
+    mb-auto mt-0 mx-0
+    cursor-pointer;
+  }
+
+  .timestamp {
+    @apply text-xs text-left font-semibold text-gray-500 dark:text-gray-600 ml-2;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-500 dark:bg-green-400;
 }
